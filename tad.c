@@ -46,12 +46,18 @@ void opcao(struct REGISTRO *dado, int x){
 			esvaziar(dado);
 		case 5:
 			exibir(dado);
-			break;			
-
+			break;
 	}
 }
 
-int inserirInicio(struct REGISTRO *inicio, struct REGISTRO aux){//Inserir no inicio
+int vazia(struct REGISTRO *inicio){ //verifica se a lista está vazia
+	if(inicio->prox == NULL){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+int inserirInicio(struct REGISTRO *inicio, struct REGISTRO aux){//Inserir no inicio da lista
 	aux.prox = inicio;
 	inicio = &aux;
 	return 0;
@@ -61,8 +67,18 @@ int inserirPos(struct REGISTRO *inicio, struct REGISTRO dados){
 	
 }
 
-int inserirFim(struct REGISTRO *inicio, struct REGISTRO dados){
-
+int inserirFim(struct REGISTRO *inicio, struct REGISTRO dados){//insere um elemento no fim da lista
+	struct REGISTRO *aux = malloc(sizeof(struct REGISTRO));
+	dados.prox = NULL;
+	if(vazia(inicio)){
+		inicio->prox = dados;
+	}else{
+		aux->prox = inicio;
+		while(aux->prox != NULL){
+			aux = aux->prox;
+		}
+		aux->prox = dados;
+	}
 }
 
 void esvaziar(struct REGISTRO *inicio){

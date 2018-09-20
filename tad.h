@@ -12,6 +12,8 @@ void criar(struct REGISTRO *dado);
 
 int menu(void);
 
+void esvaziar(struct REGISTRO *inicio);
+
 void opcao(struct REGISTRO *dado, int x);
 
 int inserirInicio(struct REGISTRO *inicio, struct REGISTRO aux);
