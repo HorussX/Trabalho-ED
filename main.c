@@ -4,7 +4,7 @@ void criar(struct REGISTRO *dado){/*função usada para preencher os dados do pr
 	printf("Insira os dados..\n");
 	printf("NOME: ");
 	setbuf(stdin,NULL);
-	scanf("%s",dado->nome);
+	scanf("%[^\n]s",dado->nome);
 	setbuf(stdin,NULL);
 	printf("IDADE: ");
 	scanf("%d",&dado->idade);
@@ -38,6 +38,14 @@ int inserirMeio(struct REGISTRO *inicio, struct REGISTRO dados){//inserir ordena
 	}
 }
 
+void print(struct REGISTRO *dados){
+	int i = 0;
+	while(dados->prox != NULL){
+		printf("---------------------------\nNome[%d]: %s\n",i+1,dados->nome);
+		printf("Idade[%d]: %d",i+1,dados->idade);
+	}
+	printf("---------------------------\n");
+}
 
 int main(){
 	struct REGISTRO tabela, *inicio;
@@ -55,10 +63,11 @@ int main(){
 		printf("LISTA NÃO INICIADA\n");
 		return 0;
 	}while(dec != 3){
-		printf("ESCOLHA UMA FUNÇÃO:\n");
-		printf("[1]INSERIR INICIO;\n[2]INSERIR;\n[3]SAIR\nR: ");
-		scanf("%d",&dec);
+		printf("---------------------------\n");
+		printf("ESCOLHA UMA FUNÇÃO:\n---------------------------\n");
+		printf("[1]INSERIR INICIO;\n[2]INSERIR;\n[3]PRINTAR\n[4]SAIR\n---------------------------\n");
 		setbuf(stdin,NULL);
+		scanf("%d",&dec);
 		if(dec == 1){
 			criar(&tabela);
 			inserirIn(inicio,tabela);
