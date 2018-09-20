@@ -9,6 +9,7 @@ void criar(struct REGISTRO *dado){/*função usada para preencher os dados do pr
 	scanf("%[^\n]s",dado->nome);
 	setbuf(stdin,NULL);
 	printf("IDADE: ");
+	setbuf(stdin,NULL);
 	scanf("%d",&dado->idade);
 	setbuf(stdin,NULL);
 }
@@ -31,7 +32,6 @@ int menu(){
 void opcao(struct REGISTRO *dado, int x){
 	struct REGISTRO reg;
 	reg.prox = NULL;
-	printf("oi");
 	switch(x){
 		case 1:
 			criar(&reg);
@@ -63,7 +63,7 @@ int vazia(struct REGISTRO *inicio){ //verifica se a lista está vazia
 }
 int inserirInicio(struct REGISTRO *inicio, struct REGISTRO aux){//Inserir no inicio da lista
 	aux.prox = inicio;
-	inicio = &aux;
+	inicio->prox = &aux;
 	tam++;
 	return 0;
 }
@@ -94,7 +94,7 @@ void esvaziar(struct REGISTRO *inicio){//esvazia a lista
 
 void exibir(struct REGISTRO *dados){ //exibe todos os registros da lista
 	int i = 0;
-	struct REGISTRO *aux = malloc(sizeof(struct REGISTRO));
+	struct REGISTRO *aux = (struct REGISTRO*)malloc(sizeof(struct REGISTRO));
 	aux = dados;
 	while(1){
 		printf("---------------------------\n");

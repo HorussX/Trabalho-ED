@@ -8,10 +8,9 @@ int main(){
 		criar(inicio);
 		printf("---------------------------\nLISTA INICIADA\n");
 	while(dec != 0){
+		setbuf(stdin,NULL);
 		dec = menu();
 		opcao(inicio, dec);
-		printf("%d",dec);
-		criar(inicio);
 	}
 	return 0;
 }
